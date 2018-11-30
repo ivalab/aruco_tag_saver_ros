@@ -3,16 +3,14 @@ import rospy
 import camera_demo_arucoTag_kinect as demo
 import kinect_subscriber as kinect
 
+import cv2
+import numpy as np
+import time
 
-TILT_MAX = 90
-TILT_STEP = 5
-TILT_MIN = -90
-TILT = 0
+from PIL import Image as PILImage
 
 
 if __name__ == '__main__':
-    print('aruco_kinect')
-
     # reset the camera tilt
 #    ctx = freenect.init()
 #    dev = freenect.open_device(ctx, freenect.num_devices(ctx) - 1)
@@ -26,19 +24,24 @@ if __name__ == '__main__':
         # get a frame from RGB camera
         # frame_current = get_video()
         frame_current = kinect.get_rgb_image()
-        count += 1
 
         # get a frame from depth sensor
         # depth, depth_raw = get_depth()
         depth, depth_raw = kinect.get_depth()
 
-#        # display RGB image
-#        cv2.imshow('RGB image', frame_current)
-#        # display depth image
-#        cv2.imshow('Depth image', depth)
-#
-#        frame_processed = aruco_pose(frame_current)
-#        # display processed image
+        # display RGB image
+        cv2.imshow('RGB image', frame_current)
+        cv2.waitKey(1000)
+
+        # display depth image
+        cv2.imshow('Depth image', depth)
+        cv2.waitKey(4000)
+        cv2.destroyAllWindows()
+
+        count += 1
+
+#        frame_processed = demo.aruco_pose(frame_current)
+        # display processed image
 #        cv2.imshow('Processed image', frame_processed)
 #
 #

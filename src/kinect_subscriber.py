@@ -10,7 +10,7 @@ IMAGE_TOPIC = "/camera/rgb/image_color"
 DEPTH_TOPIC = "/camera/depth/image_raw"
 
 
-def get_image(show=False):
+def get_rgd_image(show=False):
     #print("CALLING GET_KINECT_IMAGE")
     rospy.init_node("kinect_subscriber")
     rgb = rospy.wait_for_message(IMAGE_TOPIC, Image)
@@ -29,6 +29,7 @@ def get_image(show=False):
 
     return image
 
+
 def get_rgb_image(show=False):
     rospy.init_node("kinect_subscriber")
     rgb = rospy.wait_for_message(IMAGE_TOPIC, Image)
@@ -42,6 +43,18 @@ def get_rgb_image(show=False):
         im.show()
 
     return image
+
+
+def get_depth():
+    rospy.init_node("kinect_subscriber")
+    depth_raw = rospy.wait_for_message(DEPTH_TOPIC, Image)
+
+    # Convert sensor_msgs.Image readings into readable format
+    bridge = CvBridge()
+    depth_raw = bridge.imgmsg_to_cv2(depth_raw, depth_raw.encoding)
+    depth = depth_raw.astype(np.uint8)
+
+    return depth, depth_raw
 
 
 if __name__ == '__main__':

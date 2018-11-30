@@ -21,13 +21,17 @@ if __name__ == '__main__':
 #    freenect.shutdown(ctx)
 
     count = demo.START_COUNT
-    while 1:
+#    while 1:
+    while count < 1:
         # get a frame from RGB camera
-#        frame_current = get_video()
-        frame_current = kinect.get_image(show=True)
-        frame_current = kinect.get_rgb_image(show=True)
+        # frame_current = get_video()
+        frame_current = kinect.get_rgb_image()
+        count += 1
+
         # get a frame from depth sensor
-        depth, depth_raw = demo.get_depth()
+        # depth, depth_raw = get_depth()
+        depth, depth_raw = kinect.get_depth()
+
 #        # display RGB image
 #        cv2.imshow('RGB image', frame_current)
 #        # display depth image

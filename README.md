@@ -11,3 +11,6 @@ rosrun ros_aruco aruco_kinect.py
 
 #### Get transform matrix
 rosrun ros_aruco aruco_transform.py
+
+#### View the topic receiving the transform matrix
+rostopic echo aruco_transform

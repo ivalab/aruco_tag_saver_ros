@@ -1,3 +1,4 @@
 aruco_tag_saver
 data/
 *.swp
+*.pyc

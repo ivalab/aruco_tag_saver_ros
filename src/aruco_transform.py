@@ -51,7 +51,7 @@ if __name__ =="__main__":
 
         for i in range(4):
             for j in range(4):
-                mat.data[i + j] = M_Cm0[i][j]
+                mat.data[i * 4 + j] = M_Cm0[i][j]
 
         pub.publish(mat)
         time.sleep(1)
